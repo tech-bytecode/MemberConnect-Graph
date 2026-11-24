@@ -1,0 +1,94 @@
+<% include ../views/partials/header %>
+<style>
+.button-header {
+    float: left;
+    text-align: center;
+    width: 100%;
+}
+</style>
+
+<div class="button-header">
+    <a class="btn btn-primary" role="button" data-toggle="collapse" href="#addperson" aria-expanded="false" aria-controls="addperson">
+      Add Person
+    </a>
+
+    <a class="btn btn-danger" role="button" data-toggle="collapse" href="#addlocation" aria-expanded="false" aria-controls="addlocation">
+      Add Location
+    </a>
+
+    <a class="btn btn-info" role="button" data-toggle="collapse" href="#connectfriends" aria-expanded="false" aria-controls="connectfriends">
+      Connect People
+    </a>
+
+    <a class="btn btn-warning" role="button" data-toggle="collapse" href="#addbirthplace" aria-expanded="false" aria-controls="addbirthplace">
+      Add Birth Place
+    </a>
+</div>
+
+</br> </br> </br> </br>
+
+<div class="collapse" id="addperson">
+  <div class="well">
+  <h3>Add Person</h3>
+    <form method="POST" action="/person/add">
+        <input type="text" name="name" placeholder="Name">
+        <input type="submit" value="Submit" class="btn btn-success btn-sm">
+    </form>
+   </div>
+</div>
+
+
+<div class="collapse" id="addlocation">
+  <div class="well">
+  <h3>Add Place</h3>
+    <form method="POST" action="/location/add">
+        <input type="text" name="city" placeholder="City">
+        <input type="text" name="country" placeholder="Country">
+        <input type="submit" value="Submit" class="btn btn-success btn-sm">
+    </form>
+   </div>
+</div>
+
+
+<div class="collapse" id="connectfriends">
+  <div class="well">
+ <h3>Connect People</h3>
+    <form method="POST" action="/friends/connect">
+        <input type="text" name="name1" placeholder="Name">
+        <input type="text" name="name2" placeholder="Name">
+        <input type="submit" value="Submit" class="btn btn-success btn-sm">
+    </form>
+   </div>
+</div>
+
+<div class="collapse" id="addbirthplace">
+  <div class="well">
+ <h3>Add Birthplace</h3>
+<form method="POST" action="/person/born/add">
+    <input type="text" name="name" placeholder="Name">
+    <input type="text" name="city" placeholder="City">
+    <input type="text" name="country" placeholder="Country">
+    <input type="text" name="year" placeholder="Year">
+    <input type="submit" value="Submit" class="btn btn-success btn-sm">
+</form>
+   </div>
+</div>
+
+<h3>People</h3>
+<div class="row">
+<% persons.forEach(function(person){ %>
+    <div class="col-xs-2">
+    <div class="well"><i class="fa fa-user"></i> <a href="/person/<%= person.id %>"><%= person.name %></a></div>
+    </div>
+<% }) %>
+</div>
+
+<h3>Locations</h3>
+<div class="row">
+<% locations.forEach(function(location){ %>
+ <div class="col-xs-2">
+    <div class="well"><i class="fa fa-map-marker"></i>  <%= location.city %>, <%= location.country %></div>
+   </div>
+<% }) %>
+</div>
+<% include ../views/partials/footer %>
